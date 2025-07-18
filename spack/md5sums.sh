@@ -3,6 +3,7 @@ set -eu
 
 # MD5SUMS SH
 # Report md5sums of most recent packages for Spack
+# DEPRECATED: 2025-07-18
 
 # cd to directory containing this script:
 cd ${0:h}
