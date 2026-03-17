@@ -1,10 +1,8 @@
 #!/bin/zsh
 set -eu
 
-# This uses Wozniak's tss shell function
-
-#
-
+# Generate index.html
+# Report simplified directory listing
 
 {
   print "<html>"
@@ -13,10 +11,19 @@ set -eu
   print "Swift/T Spack Downloads"
   print "</title>"
   print "</head>"
+
   cat header.html
-  print "<pre>"
-  timestamp *.tar.gz(on)
-  print "</pre>"
+  print "<br/>"
+
+  for f in *.tar.gz(on)
+  do
+    print "<span style=\"font-family: monospace;\">"
+    ls -lgoh --time-style=+"%Y-%m-%d %H:%M:%S" $f | \
+      awk -f link.awk -v f=$f
+    print "</span>"
+    print "<br/>"
+    print "<br/>"
+  done
   print "<br/>"
   print "Updated: " $( date "+%Y-%m-%d %H:%M" )
   print "</html>"
